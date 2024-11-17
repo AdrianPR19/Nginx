@@ -21,5 +21,19 @@ Ahora en la maquina virtual descargamos nginx y comprobamos su estatus:
 ```bash  
  sudo apt update
  sudo apt install nginx
-systemctl status nginx
+ systemctl status nginx
+ ```
+
+
+2. Creación de las carpeta del sitio web
+Primero descargamos git en la maquina virtual
+```bash  
+ sudo apt install git
+ ```
+
+ahora colamos el repositorio 
+
+```bash  
+ sudo git clone https://github.com/cloudacademy/static-website-example /var/www/servidor/html
+
  ```
