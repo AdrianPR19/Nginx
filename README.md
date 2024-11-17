@@ -125,6 +125,8 @@ eliminar y agregar las lineas ssl
       sudo systemctl restart vsftpd
 ```
 
+
+5. Tarea
 crear carpeta
 ```bash  
 sudo mkdir -p /var/www/nuevaweb/html
@@ -175,3 +177,9 @@ Agrega una línea con la IP de la máquina virtual y el dominio:
 ```bash
 192.168.57.102 nuevaweb.com www.nuevaweb.com
 ```
+
+6. ¿Qué pasa si no hago el link simbólico entre sites-available y sites-enabled de mi sitio web?
+Si no creas el enlace simbólico entre sites-available y sites-enabled, Nginx no reconocerá ni cargará la configuración de tu sitio web. Esto sucede porque Nginx solo lee los archivos de configuración dentro del directorio sites-enabled al iniciar o recargar su servicio. Aunque el archivo esté en sites-available, no tendrá efecto hasta que esté vinculado.
+
+¿Qué pasa si no le doy los permisos adecuados a /var/www/nombre_web?
+Si no configuras los permisos correctamente en el directorio /var/www/nombre_web, pueden ocurrir problemas como fallos al cargar el sitio web, errores de acceso a recursos internos o inclusio pueden haber problemas de seguridad

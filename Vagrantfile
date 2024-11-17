@@ -1,5 +1,3 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
   config.vm.define "nginx" do |nginx|
@@ -7,19 +5,19 @@ Vagrant.configure("2") do |config|
     nginx.vm.hostname = "nginx.sistema.test"
     nginx.vm.network "private_network", ip: "192.168.57.102"
 
-    # Configuración del proveedor
+   
     nginx.vm.provider "virtualbox" do |vb|
       vb.memory = "512"
       vb.cpus = 1
     end
 
-    # Provisión de software y configuración
+    
     nginx.vm.provision "shell", inline: <<-SHELL
-      # Actualización de paquetes
+     
       sudo apt update
       sudo apt install -y nginx git vsftpd openssl
 
-      # Configuración del sitio web principal
+      
       sudo mkdir -p /var/www/servidor/html
       sudo git clone https://github.com/cloudacademy/static-website-example /var/www/servidor/html
       sudo chown -R www-data:www-data /var/www/servidor/html
@@ -39,7 +37,7 @@ Vagrant.configure("2") do |config|
       sudo ln -s /etc/nginx/sites-available/servidor /etc/nginx/sites-enabled/
       sudo systemctl restart nginx
 
-      # Configuración de un segundo sitio web
+      
       sudo mkdir -p /var/www/nuevaweb/html
       echo '<!DOCTYPE html><html><body><h1>Nueva Web</h1></body></html>' | sudo tee /var/www/nuevaweb/html/index.html
 
@@ -57,7 +55,7 @@ Vagrant.configure("2") do |config|
       sudo ln -s /etc/nginx/sites-available/nuevaweb /etc/nginx/sites-enabled/
       sudo systemctl restart nginx
 
-      # Configuración de FTP
+      
       sudo mkdir -p /home/vagrant/ftp
       sudo chown -R vagrant:vagrant /home/vagrant/ftp
 
@@ -73,7 +71,6 @@ Vagrant.configure("2") do |config|
 
       sudo systemctl restart vsftpd
 
-      # Modificación del archivo /etc/hosts en la VM para pruebas locales
       echo "192.168.57.102 nuevaweb.com www.nuevaweb.com" | sudo tee -a /etc/hosts
     SHELL
   end
