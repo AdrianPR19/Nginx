@@ -127,5 +127,51 @@ eliminar y agregar las lineas ssl
 
 crear carpeta
 ```bash  
-sudo mkdir -p /var/www/mi_nuevo_sitio/html
+sudo mkdir -p /var/www/nuevaweb/html
+```
+
+ Crear un archivo de configuración en sites-available
+Crea un archivo de configuración para tu nuevo dominio en el directorio /etc/nginx/sites-available/
+
+```bash
+Copiar código
+sudo nano /etc/nginx/sites-available/nuevaweb
+```
+ Agregar la configuración del servidor
+Dentro del archivo, copia y pega la siguiente configuración
+
+```bash
+server {
+    listen 80;
+    listen [::]:80;
+    root /var/www/nuevaweb/html;
+    index index.html index.htm;
+
+    server_name nuevaweb.com www.nuevaweb.com;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+ Crear un enlace simbólico en sites-enabled
+
+```bash
+sudo ln -s /etc/nginx/sites-available/nuevaweb /etc/nginx/sites-enabled/
+```
+ Reiniciar Nginx para aplicar los cambios
+```bash
+sudo systemctl restart nginx
+```
+Modificar el archivo /etc/hosts
+Abre el archivo /etc/hosts con un editor de texto:
+
+```bash
+sudo nano /etc/hosts
+```
+Agrega una línea con la IP de la máquina virtual y el dominio:
+
+```bash
+192.168.57.102 nuevaweb.com www.nuevaweb.com
 ```
