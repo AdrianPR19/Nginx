@@ -61,6 +61,8 @@ crear archivo de configuracion:
 ```
 
 agregamos esto al archivo:
+
+```bash  
  server {
          listen 80;
          listen [::]:80;
@@ -71,16 +73,25 @@ agregamos esto al archivo:
                 try_files $uri $uri/ =404;
         }
  }
+```
+ 
 
- crear archivo simbolico:
+crear archivo simbolico:
+ 
+```bash  
  sudo ln -s /etc/nginx/sites-available/servidor /etc/nginx/sites-enabled/
-
+```
  ahora reiniciamos nginx:
-
+```bash  
  sudo systemctl restart nginx
+```
+ 
 
- instalacion vsftpd
-sudo apt-get install vsftpd
+4. instalacion vsftpd
+```bash  
+ sudo apt-get install vsftpd
+```
+
 
 crear directorio ftp
 mkdir /home/vagrant/ftp
@@ -109,3 +120,7 @@ generar certificados
    reiniciar vsftpd
 
       sudo systemctl restart vsftpd
+
+
+crear carpeta 
+sudo mkdir -p /var/www/mi_nuevo_sitio/html
