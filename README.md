@@ -92,17 +92,20 @@ crear archivo simbolico:
  sudo apt-get install vsftpd
 ```
 
-
+```bash
 crear directorio ftp
 mkdir /home/vagrant/ftp
+```
 
 generar certificados
+```bash
    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt
-
-   eliminar y agregar las lineas ssl 
-      sudo nano /etc/vsftpd.conf
-
-
+```
+eliminar y agregar las lineas ssl
+```bash 
+    sudo nano /etc/vsftpd.conf
+```
+```bash 
    rsa_cert_file=/etc/ssl/certs/vsftpd.crt
    rsa_private_key_file=/etc/ssl/private/vsftpd.key
    ssl_enable=YES
@@ -116,11 +119,13 @@ generar certificados
    ssl_ciphers=HIGH
    
    local_root=/home/vagrant/ftp
-
+```
    reiniciar vsftpd
-
+```bash 
       sudo systemctl restart vsftpd
+```
 
-
-crear carpeta 
+crear carpeta
+```bash  
 sudo mkdir -p /var/www/mi_nuevo_sitio/html
+```
